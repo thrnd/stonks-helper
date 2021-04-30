@@ -1,0 +1,19 @@
+{
+    "name": "stonks-helper",
+    "version": "1.0.0",
+    "description": "yep yep pepega app",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "author": "Daniil Kiyanov",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^11.0.3",
+        "electron-reload": "^1.5.0"
+    },
+    "dependencies": {
+        "chardet": "^1.3.0",
+        "xlsx": "^0.16.9"
+    }
+}

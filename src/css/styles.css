@@ -1,0 +1,615 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+    min-height: 100vh;
+    padding: 10px;
+    margin: 0;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+.row__col {
+    flex-basis: 33.33%;
+    flex-grow: 1;
+    padding: 0 10px;
+}
+
+.msg {
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+.label {
+    display: flex;
+    flex-direction: column-reverse;
+
+    min-width: 50px;
+    margin-bottom: .5em;
+}
+.label--t--checkbox {
+    display: block;
+
+    word-break: break-all;
+}
+.label__input {
+    flex-basis: 100%;
+    max-width: 100%;
+}
+.label__text {
+    margin-bottom: 0.5em;
+}
+
+.file-label {
+    padding: 5px;
+    border: 3px dashed red;
+
+    background-color: pink;
+}
+.file-label--selected {
+    border-color: green;
+    background-color: #fff;
+    background-color: lightgreen;
+}
+.file-label__inner {
+    display: flex;
+    justify-content: space-between;
+}
+.file-label__item {
+    flex-basis: 50%;
+    max-width: calc(50% - 5px);
+}
+
+.input,
+.select {
+    display: block;
+
+    min-height: 30px;
+    min-width: 50px;
+    max-width: 100%;
+}
+.input:disabled,
+.select:disabled {
+    background-color: lightgray;
+}
+
+.select__csv {
+    background-color: rgba(144, 238, 144, .5);
+}
+
+.btn {
+    min-height: 30px;
+    margin-bottom: 0.5em;
+}
+
+.field {
+    position: relative;
+
+    width: 100%;
+    min-height: 250px;
+    padding: 10px;
+    padding-top: 15px;
+    border: 2px solid transparent;
+}
+.field--t--inner {
+    padding: 5px;
+    padding-top: 15px;
+    min-height: auto;
+}
+
+.field__title {
+    position: absolute;
+    top: 0;
+    left: 5px;
+
+    max-height: 1.2em;
+    max-width: calc(100% - 10px);
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    overflow: hidden;
+    background-color: #fff;
+    transform: translateY(-55%);
+}
+
+.field__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.field__item {
+    flex-shrink: 0;
+    flex-basis: calc(50% - 10px);
+}
+.field__item--s--lg {
+    flex-basis: 100%;
+}
+
+.files-wrap,
+.file-config-wrap {
+    display: flex;
+}
+
+.files {
+    border-color: green;
+}
+
+.file {
+    --progress: 0px;
+
+    position: relative;
+
+    display: flex;
+
+    width: 100%;
+    padding: 5px;
+    padding-right: 35px;
+    border: 2px dashed transparent;
+
+    background-color: #fff;
+    cursor: default;
+}
+.file:hover {
+    border-color: lightgray;
+}
+.file--t--target {
+    color: #fff;
+
+    border-color: green;
+    background: green;
+}
+.file--parsed {
+    cursor: pointer;
+}
+.file--parsed:hover {
+    border-color: lightgreen;
+}
+.file--del-hovered:hover {
+    border-color: #FF7F4C;
+}
+.file--active,
+.file--active:hover {
+    border-color: green;
+    background-color: lightgreen;
+}
+.file--active::after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 100%;
+
+    width: 30px;
+    height: 100%;
+
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='40' width='20'%3E%3Cpolygon points='0,0 20,20 0,40' style='fill:lightgreen' /%3E%3C/svg%3E") no-repeat 0 0 /100% 100%;
+}
+
+.file__del {
+    display: none;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+
+    background-color: #FF7F4C;
+    cursor: pointer;
+}
+.file__del::before,
+.file__del::after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 10px;
+    height: 2px;
+
+    background-color: #fff;
+}
+.file__del::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.file__del::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+.file:hover .file__del {
+    display: block;
+}
+
+.file__icon {
+    position: relative;
+    z-index: 1;
+
+    flex-shrink: 0;
+    width: 30px;
+    height: 40px;
+    margin-right: 10px;
+    border: 1px solid green;
+
+    font-size: 0.5rem;
+    line-height: 40px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    color: darkgreen;
+
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid' display='block'%3E%3Ccircle cx='50' cy='50' fill='none' stroke='%2390ee90' stroke-width='10' r='35' stroke-dasharray='164.93361431346415 56.97787143782138'%3E%3CanimateTransform attributeName='transform' type='rotate' repeatCount='indefinite' dur='1s' values='0 50 50;360 50 50' keyTimes='0;1'/%3E%3C/circle%3E%3C/svg%3E") no-repeat 50% 70% /20px;
+}
+.file__icon::before {
+    content: "";
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: var(--progress);
+    max-height: 100%;
+
+    background-color: lightgreen;
+
+    transition: height .5s;
+}
+.file__icon-triangle {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+
+    width: 10px;
+    height: 10px;
+    border: 1px solid green;
+    border-top-width: 0;
+    border-right-width: 0;
+
+    background-color: #fff;
+    overflow: hidden;
+}
+.file__icon-triangle::before {
+    content: "";
+
+    position: absolute;
+    top: -1px;
+    left: -1px;
+
+    width: 14px;
+    height: 10px;
+    border: 0px solid green;
+    border-top-width: 1px;
+
+    transform-origin: 0 0;
+    transform: rotate(45deg);
+    background-color: #fff;
+}
+.file--parsed .file__icon {
+    background: lightgreen;
+
+    transition: 0s background-color 1.5s;
+}
+.file--parsed .file__icon::after {
+    content: attr(data-ext);
+
+    position: relative;
+    z-index: 1;
+}
+.file--active .file__icon-triangle {
+    background-color: lightgreen;
+}
+.file--t--target .file__icon {
+    background-color: #fff;
+    border-color: #fff;
+}
+.file--t--target.file--parsed .file__icon {
+    background-color: lightgreen;
+    border-color: lightgreen;
+}
+.file--t--target .file__icon-triangle {
+    background-color: green;
+}
+
+.file__name {
+    display: flex;
+    align-items: center;
+
+    flex-basis: 100%;
+
+    word-break: break-all;
+}
+
+.file__config {
+    display: none;
+
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+
+    width: 25px;
+    height: 25px;
+    border: 2px solid green;
+
+    border-radius: 50%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='78.369' height='78.369'%3E%3Cpath d='M78.049 19.015L29.458 67.606a1.094 1.094 0 01-1.548 0L.32 40.015a1.094 1.094 0 010-1.547l6.704-6.704a1.095 1.095 0 011.548 0l20.113 20.112 41.113-41.113a1.095 1.095 0 011.548 0l6.703 6.704a1.094 1.094 0 010 1.548z' fill='green'/%3E%3C/svg%3E") no-repeat center /70%;
+}
+.file--config-saved .file__config {
+    display: block;
+}
+.file--t--target .file__config {
+    border-color: #fff;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='78.369' height='78.369'%3E%3Cpath d='M78.049 19.015L29.458 67.606a1.094 1.094 0 01-1.548 0L.32 40.015a1.094 1.094 0 010-1.547l6.704-6.704a1.095 1.095 0 011.548 0l20.113 20.112 41.113-41.113a1.095 1.095 0 011.548 0l6.703 6.704a1.094 1.094 0 010 1.548z' fill='white'/%3E%3C/svg%3E") no-repeat center /70%;
+}
+
+.file-config {
+    padding-top: 25px;
+    border-color: lightgray;
+}
+.file-config--active {
+    border-color: green;
+}
+.file-config--filled {
+    background-color: lightgreen;
+}
+.file-config:empty {
+    border-color: transparent;
+}
+
+.file-config__checkbox-group {
+    position: relative;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.file-config__checkbox-group--error {
+    outline: 1px solid #FF7F4C;
+}
+.file-config__checkbox-group--error::before {
+    content: "Ну хотя бы один выбери, ну";
+
+    position: absolute;
+    top: 0;
+    left: 5px;
+
+    color: #FF7F4C;
+
+    background-color: #fff;
+}
+.file-config--filled .field__title {
+    background-color: lightgreen;
+}
+
+.file-config__item {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+
+    flex-basis: 100%;
+    padding: 5px;
+}
+.file-config__item:nth-child(2n) {
+    background-color: SeaShell;
+}
+
+.file-config__label {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+
+    flex-basis: calc(30% - 10px);
+    max-width: calc(30% - 10px);
+    margin-bottom: 0;
+    border: 2px dashed transparent;
+}
+.file-config__label--t--checkbox {
+    display: block;
+
+    flex-basis: 40%;
+    max-width: 40%;
+}
+.file-config__label--t--checkbox:hover {
+    border-color: green;
+}
+
+.file-config__sku-input,
+.file-config__price-input {
+    min-height: auto;
+}
+
+.file-config__label-text {
+    margin-bottom: 0.2em;
+}
+
+.change-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    min-height: 100px;
+    border: 2px solid #000;
+
+    font-size: 2rem;
+    color: #fff;
+
+    background-color: green;
+    cursor: pointer;
+}
+.change-btn:disabled {
+    border-color: gray;
+    background-color: lightgray;
+    cursor: default;
+}
+
+.drag-n-drop-area {
+    display: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: lightgray;
+}
+.drag-n-drop-area--visible {
+    display: block;
+}
+.drag-n-drop-area::before {
+    content: attr(data-msg);
+
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    border: 4px dashed green;
+
+    font-size: 2rem;
+    font-weight: bold;
+    color: darkgreen;
+
+    background-color: #fff;
+}
+
+.dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+
+    width: 100%;
+    height: 100%;
+    padding: 50px 0;
+
+    background-color: rgba(255, 255, 255, .7);
+    overflow: auto;
+}
+
+.dialog__inner {
+    position: relative;
+
+    max-width: 80%;
+    padding: 25px;
+    padding-top: 35px;
+    margin: auto;
+    border: 2px solid #FF7F4C;
+
+    background-color: #fff;
+}
+
+.dialog__close {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+
+    width: 30px;
+    height: 30px;
+    border: 0;
+
+    background-color: #FF7F4C;
+    cursor: pointer;
+}
+.dialog__close::before,
+.dialog__close::after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 10px;
+    height: 2px;
+
+    background-color: #fff;
+}
+.dialog__close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.dialog__close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.dialog__msg {
+    margin-bottom: 1em;
+}
+
+.dialog__btn {
+    padding: 5px 10px;
+    border: 1px solid currentColor;
+
+    background-color: #fff;
+    cursor: pointer;
+}
+.dialog__btn--t--confirm {
+    margin-right: 10px;
+}
+.dialog__btn--t--confirm:hover {
+    color: #FF7F4C;
+}
+
+.config-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    font-size: .9rem;
+}
+
+.config-table__row--valid {
+    background-color: lightgreen;
+}
+.config-table__row--invalid {
+    background-color: rgba(255, 127, 76, 0.5);
+}
+.config-table__row--t--target {
+    color: #fff;
+
+    background-color: green;
+}
+
+.config-table th,
+.config-table td {
+    padding: 5px;
+    border: 1px solid #000;
+
+    text-align: left;
+    vertical-align: top;
+}
+.config-table th:first-child,
+.config-table td:first-child {
+    width: 35%;
+    max-width: 250px;
+
+    word-break: break-all;
+}
